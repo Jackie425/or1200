@@ -97,7 +97,7 @@ module or1200_dpram
    reg [dw-1:0] 		mem [(1<<aw)-1:0] /*synthesis syn_ramstyle = "no_rw_check"*/;	// RAM content
    reg [aw-1:0] 		addr_a_reg;		// RAM address registered
 
-
+`ifdef verilator // or1200 missing verilator definition
    // Function to access GPRs (for use by Verilator). No need to hide this one
    // from the simulator, since it has an input (as required by IEEE 1364-2001).
    function [31:0] get_gpr;
@@ -117,7 +117,7 @@ module or1200_dpram
 	 set_gpr = 0;
       end
    endfunction // get_gpr
-   
+`endif //  `ifdef verilator
    //
    // Data output drivers
    //

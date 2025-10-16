@@ -167,7 +167,7 @@ reg				wait_lsu;
    //
    always @(pcreg or ex_branch_addrtarget or flag or branch_op or except_type
 	    or except_start or operand_b or epcr or spr_pc_we or spr_dat_i or 
-	    except_prefix or du_flush_pipe) 
+	    except_prefix or du_flush_pipe or spr_dat_npc) // fix for potential bug
      begin
 	casez ({du_flush_pipe, spr_pc_we, except_start, branch_op}) // synopsys parallel_case
 	  {3'b000, `OR1200_BRANCHOP_NOP}: begin
